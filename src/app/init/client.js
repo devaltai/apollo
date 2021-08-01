@@ -1,5 +1,5 @@
 //Core
-import {ApolloClient, InMemoryCache, ApolloProvider} from "@apollo/client"
+import {ApolloClient, InMemoryCache} from "@apollo/client"
 
 //GraphQL Server
 const uri = "https://funded-pet-library.moonhighway.com/"
