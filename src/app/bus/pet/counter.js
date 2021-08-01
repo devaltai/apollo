@@ -7,10 +7,13 @@ import {useQueryAvailablePets} from "./hooks/useQueryAvailablePets"
 export const Counter = () => {
   const {loading, error, data} = useQueryAvailablePets()
 
-  return (
-    <>
-      <h1>Counter</h1>
-      <span>availablePets: {data.availablePets}</span>
-    </>
-  )
+  if (loading) {
+    return <p>Loading ...</p>
+  }
+
+  if (error) {
+    return <p>We have a problem: {error.message}</p>
+  }
+
+  return <p>availablePets: {data.availablePets}</p>
 }
