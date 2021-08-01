@@ -15,18 +15,18 @@ export const List = () => {
     return <p>We have a problem: {error.message}</p>
   }
 
-  const list = pets.map(({id, name}) => {
+  const petsJSX = pets.map(({id, name, weight}) => {
     return (
-      <p>
-        <span>id: {id}</span>
+      <p key={id}>
         <span>name: {name}</span>
+        <span>weight: {weight}</span>
       </p>
     )
   })
   return (
     <>
       <h1>List</h1>
-      {list}
+      {petsJSX}
     </>
   )
 }
