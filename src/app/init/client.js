@@ -1,10 +1,6 @@
 //Core
-import {
-  ApolloClient,
-  InMemoryCache,
-  createHttpLink,
-  split,
-} from "@apollo/client"
+import {ApolloClient, InMemoryCache, split} from "@apollo/client"
+import {createHttpLink} from "apollo-link-http"
 import {getMainDefinition} from "@apollo/client/utilities"
 import {WebSocketLink} from "@apollo/client/link/ws"
 import {setContext} from "@apollo/client/link/context"
@@ -18,7 +14,7 @@ const httpLink = createHttpLink({
 
 //WS
 const wslink = new WebSocketLink({
-  uri: `wss://${root}graphql`,
+  uri: `ws://${root}graphql`,
   options: {
     reconect: true,
   },
@@ -27,6 +23,7 @@ const wslink = new WebSocketLink({
 //Auth
 const authLink = setContext((_, {headers}) => {
   const token = localStorage.getItem("token")
+
   return {
     headers: {
       ...headers,
@@ -35,6 +32,7 @@ const authLink = setContext((_, {headers}) => {
   }
 })
 const wrappedHttpLink = authLink.concat(httpLink)
+
 const link = split(
   ({query}) => {
     const definition = getMainDefinition(query)

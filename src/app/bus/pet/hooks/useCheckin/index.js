@@ -3,7 +3,7 @@ import {useState} from "react"
 import {useMutation} from "@apollo/client"
 import {loader} from "graphql.macro"
 
-//Mutation
+// Mutations
 const mutationCheckIn = loader("./gql/mutationCheckIn.graphql")
 
 export const useCheckin = () => {
@@ -14,7 +14,9 @@ export const useCheckin = () => {
     ;(async () => {
       try {
         await _checkIn({
-          variables: {id},
+          variables: {
+            id,
+          },
         })
       } catch (error) {
         setError(error.message)
@@ -27,7 +29,7 @@ export const useCheckin = () => {
   return {
     checkIn,
     pet,
-    error,
     errors,
+    error,
   }
 }

@@ -5,7 +5,7 @@ import React from "react"
 import {useCheckin} from "./hooks/useCheckin"
 
 export const CheckinPet = () => {
-  const {checkIn, pet, error, errors} = useCheckin()
+  const {checkIn, pet, errors, error} = useCheckin()
 
   const petJSX = pet && (
     <>
@@ -13,16 +13,18 @@ export const CheckinPet = () => {
       <p>Name: {pet.name}</p>
     </>
   )
-  const errorJSX = error && <p>We have a problem: {error}</p>
-  const errorsJSX = errors && <p>We have another problem: {errors.message}</p>
+
+  const errorsJSX = errors && <p>We have a problem: {errors.message}</p>
+
+  const errorJSX = error && <p>We have another problem: {error}</p>
 
   return (
     <>
-      <h1>Checkin Pet</h1>
-      <button onClick={() => checkIn("c-1")}>Check In</button>
+      <h1>Checkin</h1>
+      <button onClick={() => checkIn("C-1")}>CheckIn</button>
       {petJSX}
-      {errorJSX}
       {errorsJSX}
+      {errorJSX}
     </>
   )
 }
