@@ -1,10 +1,15 @@
 //Core
-import {ApolloClient, InMemoryCache} from "@apollo/client"
+import {ApolloClient, InMemoryCache, createHttpLink} from "@apollo/client"
 
 //GraphQL Server
 const uri = "https://funded-pet-library.moonhighway.com/"
+const link = createHttpLink({
+  uri,
+})
+//Initialization cache
+const cache = new InMemoryCache()
 
 export const client = new ApolloClient({
-  uri,
-  cache: new InMemoryCache(),
+  cache,
+  link,
 })
