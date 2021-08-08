@@ -5,7 +5,14 @@ import React from "react"
 import {useCustomerAuth} from "./hooks/useCustomerAuth"
 
 export const Login = () => {
-  const {handleChange, logIn} = useCustomerAuth()
+  const {handleChange, logIn, authorizedCustomer} = useCustomerAuth()
+
+  const authorizedCustomerJSX = authorizedCustomer && (
+    <>
+      <p>Authorized Customer: {authorizedCustomer.customer.name}</p>
+      <p>Token: {authorizedCustomer.token}</p>
+    </>
+  )
   return (
     <>
       <h1>Login</h1>
@@ -24,6 +31,7 @@ export const Login = () => {
       <button type="submit" onClick={logIn}>
         Login
       </button>
+      {authorizedCustomerJSX}
     </>
   )
 }

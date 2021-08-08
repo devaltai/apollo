@@ -10,7 +10,7 @@ import {useForm} from "../useForm"
 const mutationCreateAccount = loader("./gql/mutationCreateAccount.graphql")
 
 export const useCustomerCreator = () => {
-  const [addUser, {data}] = useMutation(mutationCreateAccount)
+  const [_save, {data}] = useMutation(mutationCreateAccount)
   const {form, handleChange} = useForm({
     name: "",
     username: "",
@@ -18,7 +18,7 @@ export const useCustomerCreator = () => {
   })
 
   const save = () => {
-    addUser({
+    _save({
       variables: {
         account: form,
       },
