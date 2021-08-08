@@ -2,10 +2,10 @@
 import React from "react"
 
 //Hooks
-import {useCustomer} from "./hooks/useCustomer"
+import {useCustomerCreator} from "./hooks/useCustomerCreator"
 
 export const Customer = () => {
-  const {handleChange, save, createdAccount} = useCustomer()
+  const {handleChange, save, createdAccount} = useCustomerCreator()
 
   const customerJSX = createdAccount && (
     <p>We already created customer with name: {createdAccount.name}</p>
